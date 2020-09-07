@@ -9,18 +9,23 @@ import services.Tester;
 public class Controller {
 
 	private Tester tester;
+	private String error;
 	
 	public Controller() throws SQLException {
 		tester = new Tester("","","");
 	}
 	
+	/**
+	 * @param query
+	 * this method send the query to the tester service for execution, and get the result or the error 
+	 */
 	public void executeQuery(String query) {
 		tester.queryHandler(query);
 		ResultSet resultSet = tester.getResults();
 		if(resultSet != null) {
 			ResultSetMetaData resultSetMetaData = tester.getMetaData();
 		}else {
-			// send
+			error = tester.getError();
 		}
 	}
 	
