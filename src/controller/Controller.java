@@ -30,4 +30,16 @@ public class Controller {
 	}
 	
 	
+	/**
+	 * 
+	 * @param url
+	 * @param user
+	 * @param password
+	 */
+	public void establishConnection(String url, String user, String password) {
+		// this method will be implemented when the multi databases feature is enabled 
+	}
+	
+	
+	
 }
