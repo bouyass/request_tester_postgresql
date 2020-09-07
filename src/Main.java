@@ -1,9 +1,10 @@
+import views.Interface;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		System.out.println("Launhing the UI");
+		Interface iFace = new Interface();
 	}
 
 }
