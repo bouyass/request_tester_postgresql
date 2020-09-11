@@ -9,7 +9,9 @@ import services.Tester;
 public class Controller {
 
 	private Tester tester;
-	private String error;
+	private String error = "";
+	private ResultSet resultSet;
+	private ResultSetMetaData resultSetMetaData;
 	
 	public Controller() throws SQLException {
 		tester = new Tester("","","");
@@ -18,15 +20,42 @@ public class Controller {
 	/**
 	 * @param query
 	 * this method send the query to the tester service for execution, and get the result or the error 
+	 * @throws SQLException 
 	 */
-	public void executeQuery(String query) {
+	public void executeQuery(String query) throws SQLException {
 		tester.queryHandler(query);
-		ResultSet resultSet = tester.getResults();
+		resultSet = tester.getResults();
 		if(resultSet != null) {
-			ResultSetMetaData resultSetMetaData = tester.getMetaData();
+			resultSetMetaData = tester.getMetaData();
 		}else {
 			error = tester.getError();
 		}
+	}
+	
+	/**
+	 * 
+	 * @return the error message
+	 */
+	public String getError() {
+		String temp = error;
+		error  = "";
+		return temp;
+	}
+	
+	/**
+	 * 
+	 * @return the result data
+	 */
+	public ResultSet getResult() {
+		return resultSet;
+	}
+	
+	/**
+	 * 
+	 * @return the metadata
+	 */
+	public ResultSetMetaData getMetaData() {
+		return resultSetMetaData;
 	}
 	
 	

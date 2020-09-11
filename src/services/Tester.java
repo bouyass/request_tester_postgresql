@@ -26,7 +26,7 @@ public class Tester {
 	public Tester(String url, String user, String password) throws SQLException {
 		cp = new ConnectionProvider("jdbc:postgresql://localhost:5432/postgres","postgres","admin");
 		this.connection = cp.getConnectionInstance();
-		this.state = this.connection.createStatement();
+		this.state = this.connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 	}
 	
 	/**
@@ -34,7 +34,7 @@ public class Tester {
 	 * @param query
 	 * @throws SQLException 
 	 */
-	public void queryHandler(String query){
+	public void queryHandler(String query) throws SQLException{
 		 try {
 			resultSet = state.executeQuery(query);
 			resultSetMetaData = resultSet.getMetaData();
